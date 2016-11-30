@@ -51,11 +51,6 @@ ENV PATH ${JAVA_HOME}/bin:/usr/local/spark/sbin:/usr/local/spark/bin:${PATH}:.
 # Ports
 EXPOSE 4040 6066 7077 8080 8081
 
-# add hive meta-data host info
-RUN echo "192.168.0.91 node01" >> /etc/hosts
-COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
-
-
 RUN echo "Generating ${JAVA_FILE}" && \
     cd jdk8 && cat xaa xab xac xad > ${JAVA_FILE} && \
     rm -rf xaa xab xac xad 
@@ -116,6 +111,10 @@ COPY m2-repo /root/.m2/repository
 # test requires large memory configured on JVM
 # RUN cd myspark && mvn clean compile test package install
 RUN cd myspark && mvn clean compile package install -Dmaven.test.skip=true
+
+# add hive meta-data host info
+RUN echo "192.168.0.91 node01" >> /etc/hosts
+COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
