@@ -46,7 +46,7 @@ RUN echo "Generating spark-1.6.2-bin-hadoop2.6.tgz file" && \
     chown root:root -R /usr/local/spark
 
 # add hive meta-data host info
-RUN echo "192.168.0.91 node01" > /etc/hosts
+RUN echo "192.168.0.91 node01" >> /etc/hosts
 COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
 
 
