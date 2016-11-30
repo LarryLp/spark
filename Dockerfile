@@ -46,7 +46,7 @@ RUN echo "Generating spark-1.6.2-bin-hadoop2.6.tgz file" && \
     chown root:root -R /usr/local/spark
 
 # add spark application start scripts
-ENV PATH=$PATH:/usr/local/spark/bin:/usr/local/spark/sbin
+ENV PATH ${JAVA_HOME}/bin:/usr/local/spark/sbin:/usr/local/spark/bin:${PATH}:.
 
 # Ports
 EXPOSE 4040 6066 7077 8080 8081
