@@ -31,15 +31,20 @@ COPY install /tmp/
 
 WORKDIR /tmp
 
-RUN echo "Generating spark-2.0.0-bin-hadoop2.7.tar.gz file" && \
-    cd spark-2.0.0-bin-hadoop2.7 && \
-    cat xaa xab xac xad > spark-2.0.0-bin-hadoop2.7.tar.gz && \
-    rm -rf xaa xab xac xad && \
-    tar -xzf spark-2.0.0-bin-hadoop2.7.tar.gz && \
-    rm -rf spark-2.0.0-bin-hadoop2.7.tar.gz && \
-    mv spark-2.0.0-bin-hadoop2.7 /usr/local/spark && \
-    cd .. && rm -rf spark-2.0.0-bin-hadoop2.7 && \
+RUN echo "Generating spark-1.6.2-bin-hadoop2.6.tgz file" && \
+    cd spark-1.6.2-bin-hadoop2.6 && \
+    cat x* > spark-1.6.2-bin-hadoop2.6.tar.gz && \
+    rm -rf x* && \
+    tar -xzf spark-1.6.2-bin-hadoop2.6.tar.gz && \
+    rm -rf spark-1.6.2-bin-hadoop2.6.tar.gz && \
+    mv spark-1.6.2-bin-hadoop2.6 /usr/local/spark && \
+    cd .. && rm -rf spark-1.6.2-bin-hadoop2.6 && \
     chown root:root -R /usr/local/spark
+
+# add hive meta-data host info
+RUN echo "192.168.0.91 node01" > /etc/hosts
+COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
+
 
 RUN echo "Generating ${JAVA_FILE}" && \
     cd jdk8 && cat xaa xab xac xad > ${JAVA_FILE} && \
@@ -104,6 +109,7 @@ RUN cd myspark && mvn clean compile package install -Dmaven.test.skip=true
 
 EXPOSE 8080
 EXPOSE 7077
+EXPOSE 4040
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
