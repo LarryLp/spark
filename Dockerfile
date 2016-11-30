@@ -45,6 +45,12 @@ RUN echo "Generating spark-1.6.2-bin-hadoop2.6.tgz file" && \
     cd .. && rm -rf spark-1.6.2-bin-hadoop2.6 && \
     chown root:root -R /usr/local/spark
 
+# add spark application start scripts
+ENV PATH=$PATH:/usr/local/spark/bin:/usr/local/spark/sbin
+
+# Ports
+EXPOSE 4040 6066 7077 8080 8081
+
 # add hive meta-data host info
 RUN echo "192.168.0.91 node01" >> /etc/hosts
 COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
@@ -110,10 +116,6 @@ COPY m2-repo /root/.m2/repository
 # test requires large memory configured on JVM
 # RUN cd myspark && mvn clean compile test package install
 RUN cd myspark && mvn clean compile package install -Dmaven.test.skip=true
-
-EXPOSE 8080
-EXPOSE 7077
-EXPOSE 4040
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
