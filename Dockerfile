@@ -35,7 +35,7 @@ COPY install /tmp/
 
 WORKDIR /tmp
 
-RUN echo "Generating spark-1.6.2-bin-hadoop2.6.tgz file" && \
+RUN echo "Generating spark-2.0.1-bin-hadoop2.7.tgz file" && \
     cd spark-1.6.2-bin-hadoop2.6 && \
     cat x* > spark-1.6.2-bin-hadoop2.6.tar.gz && \
     rm -rf x* && \
