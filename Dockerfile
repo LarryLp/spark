@@ -24,6 +24,10 @@ ENV JAVA_FILE          ${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINO
 
 ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 
+# install net-tools & vim
+RUN yum -y install net-tools && \
+    yum -y install vim 
+
 COPY install /tmp/
 # RUN find /tmp -type d | sort 
 
