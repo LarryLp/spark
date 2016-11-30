@@ -31,7 +31,7 @@ RUN yum -y install net-tools && \
 COPY install /tmp/
 # RUN find /tmp -type d | sort 
 
-# File was splited using: split -b 49000000 ../spark-2.0.0-bin-hadoop2.7.tgz
+# File was splited using: split -b 240000k ../spark-2.0.1-bin-hadoop2.7.tgz
 
 WORKDIR /tmp
 
