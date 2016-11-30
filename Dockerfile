@@ -36,13 +36,13 @@ COPY install /tmp/
 WORKDIR /tmp
 
 RUN echo "Generating spark-2.0.1-bin-hadoop2.7.tgz file" && \
-    cd spark-1.6.2-bin-hadoop2.6 && \
-    cat x* > spark-1.6.2-bin-hadoop2.6.tar.gz && \
+    cd spark-2.0.1-bin-hadoop2.7 && \
+    cat x* > spark-2.0.1-bin-hadoop2.7.tar.gz && \
     rm -rf x* && \
-    tar -xzf spark-1.6.2-bin-hadoop2.6.tar.gz && \
-    rm -rf spark-1.6.2-bin-hadoop2.6.tar.gz && \
-    mv spark-1.6.2-bin-hadoop2.6 /usr/local/spark && \
-    cd .. && rm -rf spark-1.6.2-bin-hadoop2.6 && \
+    tar -xzf spark-2.0.1-bin-hadoop2.7.tar.gz && \
+    rm -rf spark-2.0.1-bin-hadoop2.7.tar.gz && \
+    mv spark-2.0.1-bin-hadoop2.7 /usr/local/spark && \
+    cd .. && rm -rf spark-2.0.1-bin-hadoop2.7 && \
     chown root:root -R /usr/local/spark
 
 # add spark application start scripts
