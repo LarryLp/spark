@@ -116,7 +116,10 @@ RUN cd myspark && mvn clean compile package install -Dmaven.test.skip=true
 COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
 
 # copy depoly script
-COPY depoly_metastore.sh ~/depoly_metastore.sh
+RUN mkdir /start_script
+COPY depoly_metastore.sh /start_script/depoly_metastore.sh
+RUN chmod a+x /start_script/depoly_metastore.sh
+WORKDIR /start_script
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
