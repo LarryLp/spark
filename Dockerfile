@@ -112,9 +112,12 @@ COPY m2-repo /root/.m2/repository
 # RUN cd myspark && mvn clean compile test package install
 RUN cd myspark && mvn clean compile package install -Dmaven.test.skip=true
 
-# add hive meta-data host info
-RUN echo "192.168.0.91 node01" >> /etc/hosts
+# add hive conf
 COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
+
+# copy depoly script
+COPY depoly_metastore.sh ~/depoly_metastore.sh
+RUN chmod a+x ~/depoly_metastore.sh
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
