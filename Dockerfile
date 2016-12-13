@@ -2,9 +2,9 @@ FROM parana/centos7
 
 # Based on centos:7.2.1511 Public Image
 
-MAINTAINER "João Antonio Ferreira" <joao.parana@gmail.com>`
+MAINTAINER "larry king" <jiangguoqing@stars.org.cn>`
 
-ENV REFRESHED_AT 2016-08-12
+ENV REFRESHED_AT 2016-12-13
 
 #
 # If you prefer download file for yourself, please execute: cd install && curl -O http://d3kbcqa49mib13.cloudfront.net/spark-2.0.0-bin-hadoop2.7.tgz to Download binary files 
