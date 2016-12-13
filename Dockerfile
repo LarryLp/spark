@@ -117,7 +117,6 @@ COPY hive-site.xml /usr/local/spark/conf/hive-site.xml
 
 # copy depoly script
 COPY depoly_metastore.sh ~/depoly_metastore.sh
-RUN chmod a+x ~/depoly_metastore.sh
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
